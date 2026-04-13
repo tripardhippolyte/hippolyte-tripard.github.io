@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hippolyte Tripard — Cybersecurity Portfolio</title>
+<style>
+:root {
+  --navy: #0a1628;
+  --navy-light: #112240;
+  --accent: #1D9E75;
+  --accent-light: #E1F5EE;
+  --text: #e2e8f0;
+  --text-muted: #94a3b8;
+  --border: rgba(255,255,255,0.08);
+  --card: #112240;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--navy); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 16px; line-height: 1.7; }
+
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(10,22,40,0.95);
+  border-bottom: 0.5px solid var(--border);
+  padding: 0 2rem;
+  display: flex; justify-content: space-between; align-items: center;
+  height: 60px;
+}
+.nav-logo { font-size: 15px; font-weight: 500; color: var(--accent); letter-spacing: 0.05em; }
+.nav-links { display: flex; gap: 2rem; }
+.nav-links a { color: var(--text-muted); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+.nav-links a:hover { color: var(--accent); }
+.lang-btn { background: transparent; border: 0.5px solid var(--accent); color: var(--accent); padding: 4px 12px; border-radius: 4px; font-size: 13px; cursor: pointer; }
+.lang-btn:hover { background: var(--accent); color: #fff; }
+
+section { max-width: 900px; margin: 0 auto; padding: 5rem 2rem; }
+
+.hero { min-height: 90vh; display: flex; flex-direction: column; justify-content: center; max-width: 900px; margin: 0 auto; padding: 2rem; }
+.hero-tag { color: var(--accent); font-size: 14px; font-weight: 500; letter-spacing: 0.1em; margin-bottom: 1rem; }
+.hero h1 { font-size: clamp(36px, 6vw, 64px); font-weight: 500; color: #fff; line-height: 1.1; margin-bottom: 1rem; }
+.hero h2 { font-size: clamp(18px, 3vw, 28px); font-weight: 400; color: var(--text-muted); margin-bottom: 2rem; }
+.hero p { font-size: 16px; color: var(--text-muted); max-width: 540px; margin-bottom: 2.5rem; }
+.hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn-primary { padding: 12px 28px; background: var(--accent); color: #fff; border: none; border-radius: 6px; font-size: 15px; cursor: pointer; text-decoration: none; }
+.btn-primary:hover { background: #0F6E56; }
+.btn-secondary { padding: 12px 28px; background: transparent; color: var(--accent); border: 1px solid var(--accent); border-radius: 6px; font-size: 15px; cursor: pointer; text-decoration: none; }
+.btn-secondary:hover { background: rgba(29,158,117,0.1); }
+
+.avatar { width: 72px; height: 72px; border-radius: 50%; background: rgba(29,158,117,0.15); border: 2px solid var(--accent); display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 500; color: var(--accent); margin-bottom: 2rem; }
+
+.section-label { font-size: 13px; color: var(--accent); letter-spacing: 0.1em; font-weight: 500; margin-bottom: 0.5rem; }
+.section-title { font-size: 28px; font-weight: 500; color: #fff; margin-bottom: 3rem; }
+
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+.skill-card { background: var(--card); border: 0.5px solid var(--border); border-radius: 10px; padding: 1.25rem; }
+.skill-card-title { font-size: 13px; color: var(--accent); font-weight: 500; margin-bottom: 0.75rem; letter-spacing: 0.05em; }
+.skill-tag { display: inline-block; background: rgba(29,158,117,0.1); color: #5DCAA5; font-size: 12px; padding: 3px 10px; border-radius: 20px; margin: 3px; }
+
+.projects-grid { display: flex; flex-direction: column; gap: 20px; }
+.project-card { background: var(--card); border: 0.5px solid var(--border); border-radius: 12px; padding: 1.5rem; transition: border-color 0.2s; }
+.project-card:hover { border-color: var(--accent); }
+.project-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem; }
+.project-title { font-size: 17px; font-weight: 500; color: #fff; }
+.project-badge { font-size: 11px; padding: 3px 10px; border-radius: 20px; font-weight: 500; }
+.badge-security { background: rgba(29,158,117,0.15); color: #5DCAA5; }
+.badge-dev { background: rgba(55,138,221,0.15); color: #85B7EB; }
+.badge-ctf { background: rgba(127,119,221,0.15); color: #AFA9EC; }
+.project-desc { font-size: 14px; color: var(--text-muted); margin-bottom: 1rem; }
+.project-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.project-tag { font-size: 12px; color: var(--text-muted); border: 0.5px solid var(--border); padding: 2px 10px; border-radius: 4px; }
+
+.certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; }
+.cert-card { background: var(--card); border: 0.5px solid var(--border); border-radius: 10px; padding: 1.25rem; display: flex; gap: 1rem; align-items: flex-start; }
+.cert-icon { width: 40px; height: 40px; border-radius: 8px; background: rgba(29,158,117,0.15); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.cert-name { font-size: 14px; font-weight: 500; color: #fff; }
+.cert-org { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+.cert-status { font-size: 11px; margin-top: 6px; padding: 2px 8px; border-radius: 20px; display: inline-block; }
+.status-done { background: rgba(29,158,117,0.15); color: #5DCAA5; }
+.status-soon { background: rgba(239,159,39,0.15); color: #EF9F27; }
+
+.contact-card { background: var(--card); border: 0.5px solid var(--border); border-radius: 12px; padding: 2rem; text-align: center; }
+.contact-card p { color: var(--text-muted); font-size: 15px; margin-bottom: 2rem; max-width: 480px; margin-left: auto; margin-right: auto; }
+.contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+.contact-link { padding: 10px 20px; border: 0.5px solid var(--border); border-radius: 6px; color: var(--text-muted); text-decoration: none; font-size: 14px; transition: all 0.2s; }
+.contact-link:hover { border-color: var(--accent); color: var(--accent); }
+
+footer { text-align: center; padding: 2rem; border-top: 0.5px solid var(--border); color: var(--text-muted); font-size: 13px; }
+
+.divider { border: none; border-top: 0.5px solid var(--border); margin: 0; }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">HT</span>
+  <div class="nav-links">
+    <a href="#about" data-fr="À propos" data-en="About">À propos</a>
+    <a href="#projects" data-fr="Projets" data-en="Projects">Projets</a>
+    <a href="#certifications" data-fr="Certifications" data-en="Certifications">Certifications</a>
+    <a href="#contact" data-fr="Contact" data-en="Contact">Contact</a>
+  </div>
+  <button class="lang-btn" onclick="toggleLang()">EN</button>
+</nav>
+
+<div class="hero" id="about">
+  <div class="avatar">HT</div>
+  <p class="hero-tag" data-fr="CYBERSÉCURITÉ · RISK MANAGEMENT" data-en="CYBERSECURITY · RISK MANAGEMENT">CYBERSÉCURITÉ · RISK MANAGEMENT</p>
+  <h1>Hippolyte Tripard</h1>
+  <h2 data-fr="Futur RSSI · Bachelor Cybersécurité" data-en="Future CISO · Cybersecurity Bachelor">Futur RSSI · Bachelor Cybersécurité</h2>
+  <p data-fr="Étudiant en cybersécurité passionné par la gouvernance, la gestion des risques et la conformité réglementaire (RGPD, ISO 27001). Orienté vers des missions à impact concret." data-en="Cybersecurity student passionate about governance, risk management and regulatory compliance (GDPR, ISO 27001). Focused on real-world impact.">
+    Étudiant en cybersécurité passionné par la gouvernance, la gestion des risques et la conformité réglementaire (RGPD, ISO 27001). Orienté vers des missions à impact concret.
+  </p>
+  <div class="hero-btns">
+    <a href="#projects" class="btn-primary" data-fr="Voir mes projets" data-en="See my projects">Voir mes projets</a>
+    <a href="#contact" class="btn-secondary" data-fr="Me contacter" data-en="Contact me">Me contacter</a>
+  </div>
+</div>
+
+<hr class="divider">
+
+<section>
+  <p class="section-label" data-fr="COMPÉTENCES" data-en="SKILLS">COMPÉTENCES</p>
+  <h2 class="section-title" data-fr="Domaines d'expertise" data-en="Areas of expertise">Domaines d'expertise</h2>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <p class="skill-card-title" data-fr="GOUVERNANCE & RISQUES" data-en="GOVERNANCE & RISK">GOUVERNANCE & RISQUES</p>
+      <span class="skill-tag">ISO 27001</span>
+      <span class="skill-tag">EBIOS RM</span>
+      <span class="skill-tag">Risk Management</span>
+      <span class="skill-tag">PSSI</span>
+    </div>
+    <div class="skill-card">
+      <p class="skill-card-title" data-fr="CONFORMITÉ" data-en="COMPLIANCE">CONFORMITÉ</p>
+      <span class="skill-tag">RGPD</span>
+      <span class="skill-tag">ANSSI</span>
+      <span class="skill-tag">PIA</span>
+      <span class="skill-tag">DPO</span>
+    </div>
+    <div class="skill-card">
+      <p class="skill-card-title" data-fr="SÉCURITÉ TECHNIQUE" data-en="TECHNICAL SECURITY">SÉCURITÉ TECHNIQUE</p>
+      <span class="skill-tag">Pentest</span>
+      <span class="skill-tag">CTF</span>
+      <span class="skill-tag">WAF</span>
+      <span class="skill-tag">Hardening</span>
+    </div>
+    <div class="skill-card">
+      <p class="skill-card-title" data-fr="DÉVELOPPEMENT" data-en="DEVELOPMENT">DÉVELOPPEMENT</p>
+      <span class="skill-tag">Python</span>
+      <span class="skill-tag">JavaScript</span>
+      <span class="skill-tag">WordPress</span>
+      <span class="skill-tag">HTML/CSS</span>
+    </div>
+    <div class="skill-card">
+      <p class="skill-card-title" data-fr="OUTILS" data-en="TOOLS">OUTILS</p>
+      <span class="skill-tag">Wordfence</span>
+      <span class="skill-tag">WPScan</span>
+      <span class="skill-tag">Nmap</span>
+      <span class="skill-tag">Cloudflare</span>
+      <span class="skill-tag">Fail2Ban</span>
+    </div>
+    <div class="skill-card">
+      <p class="skill-card-title" data-fr="PLATEFORMES" data-en="PLATFORMS">PLATEFORMES</p>
+      <span class="skill-tag">TryHackMe</span>
+      <span class="skill-tag">HackTheBox</span>
+      <span class="skill-tag">GitHub</span>
+      <span class="skill-tag">Linux</span>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="projects">
+  <p class="section-label" data-fr="PROJETS" data-en="PROJECTS">PROJETS</p>
+  <h2 class="section-title" data-fr="Réalisations concrètes" data-en="Concrete achievements">Réalisations concrètes</h2>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-header">
+        <span class="project-title">LexPrivacy BC</span>
+        <span class="project-badge badge-security" data-fr="Sécurité & Conformité" data-en="Security & Compliance">Sécurité & Conformité</span>
+      </div>
+      <p class="project-desc" data-fr="Site vitrine pour un cabinet spécialisé RGPD/Data Privacy. Mise en place d'une architecture sécurisée complète : CSP, HSTS, ModSecurity, Fail2Ban, WAF Cloudflare, headers HTTP, plan de réponse à incident et politique de sécurité documentée." data-en="Showcase website for a GDPR/Data Privacy law firm. Full secure architecture: CSP, HSTS, ModSecurity, Fail2Ban, Cloudflare WAF, HTTP headers, incident response plan and documented security policy.">
+        Site vitrine pour un cabinet spécialisé RGPD/Data Privacy. Mise en place d'une architecture sécurisée complète : CSP, HSTS, ModSecurity, Fail2Ban, WAF Cloudflare, headers HTTP, plan de réponse à incident et politique de sécurité documentée.
+      </p>
+      <div class="project-tags">
+        <span class="project-tag">WordPress</span>
+        <span class="project-tag">RGPD</span>
+        <span class="project-tag">Hardening</span>
+        <span class="project-tag">WAF</span>
+        <span class="project-tag">PRI</span>
+        <span class="project-tag">ISO 27001</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <span class="project-title" data-fr="Générateur de codes-barres" data-en="Barcode Generator">Générateur de codes-barres</span>
+        <span class="project-badge badge-dev" data-fr="Développement" data-en="Development">Développement</span>
+      </div>
+      <p class="project-desc" data-fr="Outil développé en entreprise lors de mon alternance en IT. Automatisation de la génération et gestion de codes-barres pour optimiser les processus internes." data-en="Tool developed during my IT work-study program. Automated barcode generation and management to optimize internal processes.">
+        Outil développé en entreprise lors de mon alternance en IT. Automatisation de la génération et gestion de codes-barres pour optimiser les processus internes.
+      </p>
+      <div class="project-tags">
+        <span class="project-tag">Python</span>
+        <span class="project-tag">Automatisation</span>
+        <span class="project-tag">Entreprise</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <span class="project-title" data-fr="Bot de prédiction NBA" data-en="NBA Prediction Bot">Bot de prédiction NBA</span>
+        <span class="project-badge badge-dev" data-fr="Data & IA" data-en="Data & AI">Data & IA</span>
+      </div>
+      <p class="project-desc" data-fr="Bot de prédiction de matchs NBA basé sur l'analyse de données statistiques. Projet personnel explorant le machine learning appliqué au sport." data-en="NBA match prediction bot based on statistical data analysis. Personal project exploring machine learning applied to sports.">
+        Bot de prédiction de matchs NBA basé sur l'analyse de données statistiques. Projet personnel explorant le machine learning appliqué au sport.
+      </p>
+      <div class="project-tags">
+        <span class="project-tag">Python</span>
+        <span class="project-tag">Machine Learning</span>
+        <span class="project-tag">Data Analysis</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <span class="project-title">CTF — TryHackMe & HackTheBox</span>
+        <span class="project-badge badge-ctf">CTF</span>
+      </div>
+      <p class="project-desc" data-fr="Participation régulière à des challenges de cybersécurité offensifs et défensifs. Compétences développées en exploitation web, forensique, cryptographie et escalade de privilèges." data-en="Regular participation in offensive and defensive cybersecurity challenges. Skills developed in web exploitation, forensics, cryptography and privilege escalation.">
+        Participation régulière à des challenges de cybersécurité offensifs et défensifs. Compétences développées en exploitation web, forensique, cryptographie et escalade de privilèges.
+      </p>
+      <div class="project-tags">
+        <span class="project-tag">Web Exploitation</span>
+        <span class="project-tag">Forensique</span>
+        <span class="project-tag">Cryptographie</span>
+        <span class="project-tag">Privilege Escalation</span>
+        <span class="project-tag">Linux</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="certifications">
+  <p class="section-label" data-fr="CERTIFICATIONS" data-en="CERTIFICATIONS">CERTIFICATIONS</p>
+  <h2 class="section-title" data-fr="Formations & certifications" data-en="Training & certifications">Formations & certifications</h2>
+  <div class="certs-grid">
+
+    <div class="cert-card">
+      <div class="cert-icon">A</div>
+      <div>
+        <p class="cert-name">MOOC SecNumacadémie</p>
+        <p class="cert-org">ANSSI</p>
+        <span class="cert-status status-done" data-fr="Obtenu" data-en="Obtained">Obtenu</span>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-icon">I</div>
+      <div>
+        <p class="cert-name">ISO 27001 Lead Implementer</p>
+        <p class="cert-org">PECB</p>
+        <span class="cert-status status-soon" data-fr="En cours" data-en="In progress">En cours</span>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-icon">T</div>
+      <div>
+        <p class="cert-name">TryHackMe</p>
+        <p class="cert-org">Cybersecurity Platform</p>
+        <span class="cert-status status-done" data-fr="Actif" data-en="Active">Actif</span>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-icon">H</div>
+      <div>
+        <p class="cert-name">HackTheBox</p>
+        <p class="cert-org">Cybersecurity Platform</p>
+        <span class="cert-status status-done" data-fr="Actif" data-en="Active">Actif</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="contact">
+  <p class="section-label">CONTACT</p>
+  <h2 class="section-title" data-fr="Travaillons ensemble" data-en="Let's work together">Travaillons ensemble</h2>
+  <div class="contact-card">
+    <p data-fr="Disponible pour des stages, alternances ou projets en cybersécurité et risk management. N'hésitez pas à me contacter." data-en="Available for internships, work-study programs or projects in cybersecurity and risk management. Feel free to reach out.">
+      Disponible pour des stages, alternances ou projets en cybersécurité et risk management. N'hésitez pas à me contacter.
+    </p>
+    <div class="contact-links">
+      <a href="mailto:votre@email.com" class="contact-link">Email</a>
+      <a href="https://linkedin.com/in/votre-profil" class="contact-link">LinkedIn</a>
+      <a href="https://github.com/votre-github" class="contact-link">GitHub</a>
+      <a href="https://tryhackme.com/p/votre-profil" class="contact-link">TryHackMe</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Hippolyte Tripard · <span data-fr="Cybersécurité & Risk Management" data-en="Cybersecurity & Risk Management">Cybersécurité & Risk Management</span> · 2026</p>
+</footer>
+
+<script>
+let lang = 'fr';
+function toggleLang() {
+  lang = lang === 'fr' ? 'en' : 'fr';
+  document.querySelector('.lang-btn').textContent = lang === 'fr' ? 'EN' : 'FR';
+  document.querySelectorAll('[data-fr]').forEach(el => {
+    el.textContent = lang === 'fr' ? el.dataset.fr : el.dataset.en;
+  });
+}
+</script>
+
+</body>
+</html>
